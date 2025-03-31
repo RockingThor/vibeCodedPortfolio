@@ -1,4 +1,7 @@
 import { motion } from "framer-motion";
+import { ExternalLink as LinkIcon, Github as GithubIcon, Laptop, Code, Briefcase } from "lucide-react";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { cn } from "@/lib/utils";
 
 type ProjectProps = {
   title: string;
@@ -6,106 +9,139 @@ type ProjectProps = {
   technologies: string[];
   link: string;
   github?: string;
-  image?: string;
   delay: number;
 };
 
-function ProjectCard({
-  title,
-  description,
-  technologies,
-  link,
-  github,
-  image,
-  delay,
-}: ProjectProps) {
+export function GlowingEffectDemo({ projects }: { projects: ProjectProps[] }) {
+  // Define specific grid areas for each project
+  const gridAreas = [
+    "md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]",
+    "md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]",
+    "md:[grid-area:2/1/3/13] xl:[grid-area:1/5/3/13]",
+  ];
+
+  // Define icons for each project
+  const projectIcons = [
+    <Laptop className="h-4 w-4" key="laptop" />,
+    <Briefcase className="h-4 w-4" key="briefcase" />,
+    <Code className="h-4 w-4" key="code" />
+  ];
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, delay }}
-      viewport={{ once: true }}
-      className="bg-gray-900/50 backdrop-blur-sm rounded-xl border border-gray-800 overflow-hidden shadow-xl"
-    >
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-        <p className="text-gray-300 mb-4">{description}</p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          {technologies.map((tech, index) => (
-            <span
-              key={index}
-              className="px-3 py-1 bg-gray-800 text-gray-300 text-sm rounded-full"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex space-x-4">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:text-blue-300 transition-colors inline-flex items-center"
-          >
-            View Project
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 ml-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-          {github && (
-            <a
-              href={github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center"
-            >
-              GitHub
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 ml-1"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
-          )}
-        </div>
-      </div>
-    </motion.div>
+    <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2">
+      {projects.map((project, index) => (
+        index < 3 && (
+          <GridItem
+            key={index}
+            area={gridAreas[index]}
+            icon={projectIcons[index]}
+            title={project.title}
+            description={project.description}
+            technologies={project.technologies}
+            link={project.link}
+            github={project.github}
+          />
+        )
+      ))}
+    </ul>
   );
 }
+
+interface GridItemProps {
+  area: string;
+  icon: React.ReactNode;
+  title: string;
+  description: React.ReactNode;
+  technologies: string[];
+  link: string;
+  github?: string;
+}
+
+const GridItem = ({ area, icon, title, description, technologies, link, github }: GridItemProps) => {
+  return (
+    <li className={cn("min-h-[14rem] list-none", area)}>
+      <div className="relative h-full rounded-[1.25rem] border-[0.75px] border-border p-2 md:rounded-[1.5rem] md:p-3">
+        <GlowingEffect
+          spread={40}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          borderWidth={3}
+        />
+        <div className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border-[0.75px] bg-background p-6 shadow-sm dark:shadow-[0px_0px_27px_0px_rgba(45,45,45,0.3)] md:p-6">
+          <div className="relative flex flex-1 flex-col justify-between gap-3">
+            <div className="w-fit rounded-lg border-[0.75px] border-border bg-muted p-2">
+              {icon}
+            </div>
+            <div className="space-y-3">
+              <h3 className="pt-0.5 text-xl leading-[1.375rem] font-semibold font-sans tracking-[-0.04em] md:text-2xl md:leading-[1.875rem] text-balance text-foreground">
+                {title}
+              </h3>
+              <h2 className="[&_b]:md:font-semibold [&_strong]:md:font-semibold font-sans text-sm leading-[1.125rem] md:text-base md:leading-[1.375rem] text-muted-foreground">
+                {description}
+              </h2>
+              <div className="flex flex-wrap gap-2 mt-3">
+                {technologies.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-2 py-1 bg-muted text-muted-foreground text-xs rounded-full"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="flex space-x-4">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground hover:text-muted-foreground transition-colors inline-flex items-center text-sm"
+            >
+              View Project
+              <LinkIcon className="h-3 w-3 ml-1" />
+            </a>
+            {github && (
+              <a
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground hover:text-muted-foreground transition-colors inline-flex items-center text-sm"
+              >
+                GitHub
+                <GithubIcon className="h-3 w-3 ml-1" />
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </li>
+  );
+};
 
 export function Projects() {
   const projects: ProjectProps[] = [
     {
       title: "Hangout Server",
-      description: "A full-stack hangout platform, built with Next.js, AWS, and PostgreSQL. Features real-time chat, user authentication, and responsive design.",
-      technologies: ["Next.js", "TypeScript", "AWS", "PostgreSQL", "Tailwind CSS"],
+      description:
+        "A full-stack hangout platform, built with Next.js, AWS, and PostgreSQL. Features real-time chat, user authentication, and responsive design.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "AWS",
+        "PostgreSQL",
+        "Tailwind CSS",
+      ],
       link: "https://github.com/RockingThor",
       github: "https://github.com/RockingThor",
       delay: 0.1,
     },
     {
       title: "Insurance Policy Management",
-      description: "A comprehensive insurance policy management system with document upload functionality using Firebase Storage and react-dropzone.",
+      description:
+        "A comprehensive insurance policy management system with document upload functionality using Firebase Storage and react-dropzone.",
       technologies: ["React", "Firebase", "Node.js", "Express", "MongoDB"],
       link: "#",
       github: "https://github.com/RockingThor",
@@ -113,8 +149,15 @@ export function Projects() {
     },
     {
       title: "Portfolio Website",
-      description: "A sleek, modern portfolio website built with React, TypeScript, and Tailwind CSS. Features 3D animations with Spline and smooth transitions with Framer Motion.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Spline"],
+      description:
+        "A sleek, modern portfolio website built with React, TypeScript, and Tailwind CSS. Features 3D animations with Spline and smooth transitions with Framer Motion.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Spline",
+      ],
       link: "https://me.rohitnandi.com/",
       github: "https://github.com/RockingThor",
       delay: 0.3,
@@ -130,17 +173,10 @@ export function Projects() {
         viewport={{ once: true }}
         className="text-center mb-12"
       >
-        <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-500">
-          Projects
-        </h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-purple-600 to-blue-500 mx-auto mt-2"></div>
+        <h2 className="text-3xl md:text-4xl font-bold text-white">Projects</h2>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-        {projects.map((project, index) => (
-          <ProjectCard key={index} {...project} />
-        ))}
-      </div>
+      <GlowingEffectDemo projects={projects} />
     </div>
   );
 }
