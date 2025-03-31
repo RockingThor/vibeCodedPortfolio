@@ -6,12 +6,12 @@ import { Footer } from "./components/sections/footer";
 import { Projects } from "./components/sections/projects";
 import { Skills } from "./components/sections/skills";
 import { SplineSceneBasic } from "./components/spline-scene-demo";
-import { Navbar } from "./components/ui/navbar";
+import { AnimeNavBar } from "./components/ui/anime-navbar";
 
 function App() {
   return (
     <div className="bg-black min-h-screen w-full text-white">
-      <Navbar />
+      <AnimeNavBar />
       <main className="pt-16">
         <section id="home" className="mt-[-100px]">
           <SplineSceneBasic />
