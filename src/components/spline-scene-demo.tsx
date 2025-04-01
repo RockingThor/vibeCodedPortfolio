@@ -14,7 +14,7 @@ export function SplineSceneBasic() {
         fill="purple"
       />
 
-      <div className="flex h-full flex-col md:flex-row relative z-[2]">
+      <div className="flex h-full flex-col md:flex-row relative z-[2] items-center justify-center">
         {/* Left content */}
         <motion.div
           className="flex-1 p-8 relative z-10 flex flex-col justify-center backdrop-blur-sm bg-black/10 rounded-l-xl"
@@ -25,14 +25,7 @@ export function SplineSceneBasic() {
           <h1 className="text-4xl md:text-5xl font-bold text-white">
             Rohit Nandi
           </h1>
-          <h2 className="text-xl md:text-3xl font-serif text-white mt-2">
-            Full Stack Engineer
-          </h2>
-          <p className="mt-4 text-gray-300 max-w-lg">
-            Detail-oriented Full Stack Engineer dedicated to building
-            high-quality products. Specializing in React, TypeScript, Node.js,
-            and cloud technologies.
-          </p>
+          <h2 className=" font-serif text-white mt-2">Full Stack Engineer</h2>
         </motion.div>
 
         {/* Right content */}

@@ -2,11 +2,11 @@ import "./App.css";
 import { About } from "./components/sections/about";
 import { Contact } from "./components/sections/contact";
 import { Experience } from "./components/sections/experience";
-import { Footer } from "./components/sections/footer";
 import { Projects } from "./components/sections/projects";
 import { Skills } from "./components/sections/skills";
 import { SplineSceneBasic } from "./components/spline-scene-demo";
 import { AnimeNavBar } from "./components/ui/anime-navbar";
+import { Footer } from "./components/ui/large-name-footer";
 
 function App() {
   return (
@@ -20,22 +20,21 @@ function App() {
         <section id="about" className="mt-[-60px]">
           <About />
         </section>
+        <section id="skills" className="py-16">
+          <Skills />
+        </section>
 
         <section id="experience" className="py-16">
           <Experience />
-        </section>
-
-        <section id="skills" className="py-16">
-          <Skills />
         </section>
 
         <section id="projects" className="py-16">
           <Projects />
         </section>
 
-        <section id="contact" className="py-16">
+        {/* <section id="contact" className="py-16">
           <Contact />
-        </section>
+        </section> */}
       </main>
 
       <Footer />

@@ -37,7 +37,7 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed  bg-none p-8 rounded-xl shadow-xl border border-none"
+          className="max-w-3xl mx-auto text-lg text-gray-300 leading-relaxed  bg-none p-8 rounded-xl shadow-xl border border-none mt-[-30px]"
         >
           <p className="mb-6">
             Frontend-focused Full Stack Engineer specializing in
