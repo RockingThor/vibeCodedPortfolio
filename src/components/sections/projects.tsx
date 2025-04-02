@@ -123,21 +123,7 @@ const GridItem = ({ area, icon, title, description, technologies, link, github }
 
 export function Projects() {
   const projects: ProjectProps[] = [
-    {
-      title: "Hangout Server",
-      description:
-        "A full-stack hangout platform, built with Next.js, AWS, and PostgreSQL. Features real-time chat, user authentication, and responsive design.",
-      technologies: [
-        "Next.js",
-        "TypeScript",
-        "AWS",
-        "PostgreSQL",
-        "Tailwind CSS",
-      ],
-      link: "https://github.com/RockingThor",
-      github: "https://github.com/RockingThor",
-      delay: 0.1,
-    },
+    
     {
       title: "Insurance Policy Management",
       description:
@@ -162,10 +148,25 @@ export function Projects() {
       github: "https://github.com/RockingThor",
       delay: 0.3,
     },
+    {
+      title: "Hangout Server",
+      description:
+        "A full-stack hangout platform, built with Next.js, AWS, and PostgreSQL. Features real-time chat, user authentication, and responsive design.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "AWS",
+        "PostgreSQL",
+        "Tailwind CSS",
+      ],
+      link: "https://github.com/RockingThor",
+      github: "https://github.com/RockingThor",
+      delay: 0.1,
+    },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-[-80px]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

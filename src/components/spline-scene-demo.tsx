@@ -30,7 +30,7 @@ export function SplineSceneBasic() {
 
         {/* Right content */}
         <motion.div
-          className="flex-1 relative"
+          className="flex-1 relative h-[80%]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.3 }}

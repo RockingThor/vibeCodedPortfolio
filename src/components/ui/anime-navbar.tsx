@@ -25,6 +25,11 @@ const defaultItems: NavItem[] = [
     icon: Home,
   },
   {
+    name: "Experience",
+    url: "#experience",
+    icon: Briefcase,
+  },
+  {
     name: "Projects",
     url: "#projects",
     icon: Code,
